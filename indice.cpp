@@ -11,9 +11,13 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
     vector<string> documentosRelevantes;
     while(busca >> palavra){
         palavraNormalizada = normalizador(palavra);
-            if(!palavraNormalizada.empty){
-                if(getIndice().find(palavraNormalizada))
+        if(!palavraNormalizada.empty){
+            if(getIndice().find(palavraNormalizada) != getIndice.end()){
+                while(map<string, int> interador : getIndice()[palavraNormalizada]){
+                    
+                }
             }
+        }
     }
 }
 
