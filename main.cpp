@@ -1,5 +1,4 @@
-#include<iostream>
-#include"normalizador.h"
+#include <iostream>
 
-
-
+#include "indice.h"
+#include "normalizador.h"
