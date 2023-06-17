@@ -15,8 +15,8 @@ private:
 public:
 
     //void construtorIndice(string pasta);
-    void percorrerArquivo(string nomeArquivo);
-    void percorrerPasta(string nomePasta); 
+    void percorrerArquivo(string nomeArquivo, map<string, map<string, int>>& x);
+    void percorrerPasta(string nomePasta, map<string, map<string, int>>& x); 
     vector<string> buscadorIndice(string busca);
     map<string, map <string, int>> getIndice();
 };
