@@ -1,9 +1,11 @@
 #include "indice.h"
 #include "normalizador.h"
-#include<fstream>
-#include<sstream>
-#include<filesystem>
+#include <fstream>
+#include <sstream>
+#include <filesystem>
 #include <algorithm>
+
+using std::to_string;
 
 using std::to_string; 
 
@@ -18,13 +20,12 @@ void IndiceInvertido::percorrerArquivo(string nomeArquivo){
             indice[normalizador(palavra)][nomeArquivo]++; 
         }
     }
-
     arq.close(); 
 }
 
 void IndiceInvertido::percorrerPasta(string nomePasta){
     vector<string> nomesArquivos; 
-    for(auto it : std::filesystem::directory_iterator(nomePasta)){
+    for(const auto& it : std::filesystem::directory_iterator(nomePasta)){
         if(it.is_regular_file()){
             nomesArquivos.push_back(it.path().string());
         }
@@ -81,6 +82,7 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
 
     return documentosRelevantes;
 }
+
 
 map<string, map <string, int>> IndiceInvertido::getIndice(){
     return this->indice;
