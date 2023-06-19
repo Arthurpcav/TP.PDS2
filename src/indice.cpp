@@ -37,38 +37,45 @@ void IndiceInvertido::percorrerPasta(string nomePasta){
 
 vector<string> IndiceInvertido::buscadorIndice(string busca){
     int numero;
-    string palavra, palavraNormalizada, nomeDocumento, documento;
-    vector<string> palavras, documentosRelevantes;
-    vector<string> ordemDocumentos;
-    map<string, int> hits;
-    map<string, int> resultado;
+    string palavra, palavraNormalizada, nomeDocumento;
+    vector<string> palavras, documentosRelevantes, ordemDocumentos;
+    map<string, int> hits, numeroPalavras, resultado;
 
-    
     std::istringstream iss(busca);
     while (iss >> palavra) {
-        palavras.push_back(palavra);
+        if(!(find(palavras.begin(), palavras.end(), palavra) != palavras.end())){
+            palavras.push_back(palavra);
+        }
     }
+    int quantidade = palavras.size();
 
     for (const auto& it : palavras) {
         palavraNormalizada = normalizador(it);
         for (const auto& it : this->indice) {
             if (it.first == palavraNormalizada) {
                 resultado = it.second;
-            }
-
-            for (const auto& it : resultado){
-                nomeDocumento = it.first.substr(10);
-                hits[nomeDocumento] = hits[nomeDocumento] + it.second;   
+                for (const auto& it : resultado){
+                    nomeDocumento = it.first.substr(10);
+                    hits[nomeDocumento] = hits[nomeDocumento] + it.second;
+                    numeroPalavras[nomeDocumento] = numeroPalavras[nomeDocumento] +1; 
+                }
             }
         }
     }
 
     for (const auto& it : hits) {
-        ordemDocumentos.push_back(it.first);
+        if(numeroPalavras[it.first] == quantidade){
+            ordemDocumentos.push_back(it.first);
+        }
     }
-    
+
     sort(ordemDocumentos.begin(), ordemDocumentos.end(), [&](string a, string b) {
-        return hits[a] > hits[b] && a < b;
+        if(hits[a] == hits[b]) {
+            return hits[a] > hits[b] && a < b;
+        }
+        else {
+            return hits[a] > hits[b]; 
+        }
     });
 
     //reutilização da variavel numero;
@@ -87,7 +94,6 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
     }
 
 }
-
 
 map<string, map <string, int>> IndiceInvertido::getIndice(){
     return this->indice;
