@@ -36,12 +36,13 @@ void IndiceInvertido::percorrerPasta(string nomePasta){
 
 vector<string> IndiceInvertido::buscadorIndice(string busca){
     int numero;
-    string palavra, palavraNormalizada, numeroString, documento;
+    string palavra, palavraNormalizada, nomeDocumento, documento;
     vector<string> palavras, documentosRelevantes;
-    vector<int> ordemDocumentos;
-    map<int, int> hits;
+    vector<string> ordemDocumentos;
+    map<string, int> hits;
     map<string, int> resultado;
 
+    
     std::istringstream iss(busca);
     while (iss >> palavra) {
         palavras.push_back(palavra);
@@ -55,9 +56,8 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
             }
 
             for (const auto& it : resultado){
-                numeroString = it.first.substr(11);
-                int numero = stoi(numeroString);
-                hits[numero] = hits[numero] + it.second;   
+                nomeDocumento = it.first.substr(10);
+                hits[nomeDocumento] = hits[nomeDocumento] + it.second;   
             }
         }
     }
@@ -66,20 +66,25 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
         ordemDocumentos.push_back(it.first);
     }
     
-    sort(ordemDocumentos.begin(), ordemDocumentos.end(), [&](int a, int b) {
-        return hits[a] > hits[b];
+    sort(ordemDocumentos.begin(), ordemDocumentos.end(), [&](string a, string b) {
+        return hits[a] > hits[b] && a < b;
     });
 
     //reutilização da variavel numero;
     numero = 0;
 
-    for(auto const& it : hits){
-        documento = "d" + to_string(ordemDocumentos[numero]) + ".txt";
-        documentosRelevantes.push_back(documento);
+    for(auto const& it : ordemDocumentos){
+        documentosRelevantes.push_back(ordemDocumentos[numero]);
         numero++;
     }
 
-    return documentosRelevantes;
+    if(documentosRelevantes.size()==0){
+        BuscaNaoEncontrada x; 
+        throw x; 
+    }else{
+        return documentosRelevantes; 
+    }
+
 }
 
 
