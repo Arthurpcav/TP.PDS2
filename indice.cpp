@@ -7,7 +7,6 @@
 
 using std::to_string;
 
-using std::to_string; 
 
 void IndiceInvertido::percorrerArquivo(string nomeArquivo){
     std::ifstream arq(nomeArquivo); 
