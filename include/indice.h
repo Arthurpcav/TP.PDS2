@@ -5,6 +5,9 @@
 #include <vector>
 #include <map>
 
+struct BuscaNaoEncontrada{
+
+}; 
 
 using std::string, std::map, std::vector;
 

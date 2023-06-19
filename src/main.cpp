@@ -12,10 +12,14 @@ int main(){
     indiceMain.percorrerPasta(nomePasta);
     
     cout << "Digite a busca:" << endl;
-    getline(cin,busca);
+    try{
+        getline(cin,busca);
 
-    documentosRelevantes = indiceMain.buscadorIndice(busca);
-
+        documentosRelevantes = indiceMain.buscadorIndice(busca);
+    }catch(BuscaNaoEncontrada e){
+        cout << "Não foi encontrado nenhum arquivo correspondente a essa busca." << endl;
+    }
+    
     for (const auto& it : documentosRelevantes){
        cout << it << endl;
     }
