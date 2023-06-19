@@ -7,7 +7,9 @@
 
 using std::to_string;
 
-void IndiceInvertido::percorrerArquivo(string nomeArquivo, map<string, map<string, int>>& x){
+using std::to_string; 
+
+void IndiceInvertido::percorrerArquivo(string nomeArquivo){
     std::ifstream arq(nomeArquivo); 
     string linha; 
     string palavra; 
@@ -15,7 +17,7 @@ void IndiceInvertido::percorrerArquivo(string nomeArquivo, map<string, map<strin
     while(std::getline(arq, linha)){
         std::istringstream iss(linha); 
         while(iss >> palavra){
-            x[normalizador(palavra)][nomeArquivo]++; 
+            indice[normalizador(palavra)][nomeArquivo]++; 
         }
     }
     arq.close(); 
@@ -29,7 +31,7 @@ void IndiceInvertido::percorrerPasta(string nomePasta){
         }
     } 
     for(string y : nomesArquivos){
-        percorrerArquivo(y, this->indice); 
+        percorrerArquivo(y); 
     }
 }
 
@@ -79,7 +81,8 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
     }
 
     return documentosRelevantes;
-}   
+}
+
 
 map<string, map <string, int>> IndiceInvertido::getIndice(){
     return this->indice;
