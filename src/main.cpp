@@ -19,10 +19,11 @@ using std::cout, std::endl, std::cin;
 int main(){
     IndiceInvertido indiceMain;
     vector<string> documentosRelevantes;
-    string busca, nomePasta = "documents";
+    string busca, parada, nomePasta = "documents";
     indiceMain.percorrerPasta(nomePasta); 
     bool finalizar = false; 
-    
+    system(CLEAR_COMMAND); 
+
     while(!finalizar){ 
         cout << AZUL << "Digite o que deseja buscar ou pressione 'ctrl+z' para finalizar."<< RESET <<endl; 
                 
@@ -38,7 +39,6 @@ int main(){
         for (const auto& it : documentosRelevantes){
         cout << it << endl; 
         }
-        
     }  
     return 0; 
 }
