@@ -8,5 +8,4 @@ using std::string;
 
 string normalizador(string palavra); 
 
-
 #endif

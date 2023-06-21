@@ -5,11 +5,11 @@
 #include <vector>
 #include <map>
 
+using std::string, std::map, std::vector;
+
 struct BuscaNaoEncontrada{
 
 }; 
-
-using std::string, std::map, std::vector;
 
 class IndiceInvertido {
 private:
@@ -17,7 +17,6 @@ private:
 
 public:
 
-    //void construtorIndice(string pasta);
     void percorrerArquivo(string nomeArquivo);
     void percorrerPasta(string nomePasta); 
     vector<string> buscadorIndice(string busca);

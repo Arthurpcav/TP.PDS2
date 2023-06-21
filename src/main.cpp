@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "indice.h"
 #include "normalizador.h"
 
@@ -19,7 +17,7 @@ using std::cout, std::endl, std::cin;
 int main(){
     IndiceInvertido indiceMain;
     vector<string> documentosRelevantes;
-    string busca, parada, nomePasta = "documents";
+    string busca, parada, nomePasta = "documentos";
     indiceMain.percorrerPasta(nomePasta); 
     bool finalizar = false; 
     system(CLEAR_COMMAND); 

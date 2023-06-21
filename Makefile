@@ -10,3 +10,5 @@ build/indice.o: include/indice.h src/indice.cpp
 build/normalizador.o: include/normalizador.h src/normalizador.cpp
 	c++ -I include -std=c++17 -c src/normalizador.cpp -o build/normalizador.o
 
+run: main
+	./main

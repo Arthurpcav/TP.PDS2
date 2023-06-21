@@ -5,8 +5,6 @@
 #include <filesystem>
 #include <algorithm>
 
-using std::to_string;
-
 using std::to_string; 
 
 void IndiceInvertido::percorrerArquivo(string nomeArquivo){
@@ -55,7 +53,7 @@ vector<string> IndiceInvertido::buscadorIndice(string busca){
             if (it.first == palavraNormalizada) {
                 resultado = it.second;
                 for (const auto& it : resultado){
-                    nomeDocumento = it.first.substr(10);
+                    nomeDocumento = it.first.substr(11);
                     hits[nomeDocumento] = hits[nomeDocumento] + it.second;
                     numeroPalavras[nomeDocumento] = numeroPalavras[nomeDocumento] +1; 
                 }
