@@ -1,5 +1,5 @@
 bin/main: obj/main.o obj/indice.o obj/normalizador.o 
-	c++ -I include -std=c++17 obj/main.o obj/indice.o obj/normalizador.o -g -o main
+	c++ -I include -std=c++17 obj/main.o obj/indice.o obj/normalizador.o -g -o bin/main
 
 obj/main.o: src/main.cpp
 	c++ -I include -std=c++17 -c src/main.cpp -o obj/main.o
@@ -13,4 +13,4 @@ obj/normalizador.o: include/normalizador.h src/normalizador.cpp
 all: bin/main
 
 run: bin/main
-	./main
+	./bin/main
