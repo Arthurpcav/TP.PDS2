@@ -26,7 +26,6 @@ int main(){
         cout << AZUL << "Digite o que deseja buscar ou pressione 'ctrl+z' para finalizar."<< RESET <<endl; 
                 
         getline(cin,busca);
-
         try{
             documentosRelevantes = indiceMain.buscadorIndice(busca);
         }catch(BuscaNaoEncontrada& e){
